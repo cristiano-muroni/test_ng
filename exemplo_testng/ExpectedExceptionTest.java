@@ -1,10 +1,22 @@
 package exemplo_testng;
 
-import org.testng.annotations.Test;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class ExpectedExceptionTest {
-  @Test
-  public void f() {
-  }
+   String message = "Manisha";	
+   MessageUtil messageUtil = new MessageUtil(message);
+	   
+   @Test(expectedExceptions = ArithmeticException.class)
+   public void testPrintMessage() {	
+      System.out.println("Inside testPrintMessage()");     
+      messageUtil.printMessage();     
+   }
+   
+   @Test
+   public void testSalutationMessage() {
+      System.out.println("Inside testSalutationMessage()");
+      message = "Hi!" + "Manisha";
+      Assert.assertEquals(message,messageUtil.salutationMessage());
+   }
 }
